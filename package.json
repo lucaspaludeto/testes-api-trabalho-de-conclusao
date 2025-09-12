@@ -6,7 +6,8 @@
 	"scripts": {
 		"start": "node server.js",
 		"dev": "nodemon server.js",
-		"test-rest-controller": "mocha test/rest/controller/**/*.test.js --timeout 10000"
+		"test-rest-controller": "mocha test/rest/controller/**/*.test.js --timeout 10000",
+		"test-rest-external": "mocha test/rest/external/**/*.test.js --timeout 10000"
 	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
