@@ -20,18 +20,21 @@ describe('Expense Controller', () => {
             token = respostaLogin.body.token;
         });
         
-        it('POST /expenses deve retornar 201 quando os dados são válidos', async () => {                    
+        it.only('POST /expenses deve retornar 201 quando os dados são válidos', async () => {                    
             
             const resposta = await request(app)
                 .post('/expenses')
                 .set('Authorization', `Bearer ${token}`)
                 .send({
-                    categoria: "transporte",
-                    descricao: "Uber",
-                    preco: 27.90 
+                    categoria: "Alimentação",
+                    descricao: "Lanche McDonald's",
+                    preco: 83.99
                     });
 
                 expect(resposta.status).to.equal(201);
+
+                const respostaEsperada = require('../fixture/respostas/deveRetornar201QaundoOsDadosSaoValidos.json');
+                expect(resposta.body).to.deep.equal(respostaEsperada);
         });
 
         it('POST /expenses deve retornar 400 quando categoria não é informada', async () => {
