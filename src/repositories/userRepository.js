@@ -1,7 +1,6 @@
 
 const bcrypt = require('bcryptjs');
 
-// Função para garantir que o hash é sempre gerado corretamente ao iniciar o servidor
 function getDefaultUsers() {
 	return [
 		{
