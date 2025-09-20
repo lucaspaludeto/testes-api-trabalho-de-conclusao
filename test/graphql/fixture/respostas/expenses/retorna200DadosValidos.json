@@ -1,0 +1,9 @@
+{
+  "data": {
+    "createExpense": {
+      "categoria": "Transporte",
+      "descricao": "Uber",
+      "preco": 49.99
+    }
+  }
+}

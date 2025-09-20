@@ -1,0 +1,8 @@
+{
+     "query": "mutation Mutation($categoria: String!, $descricao: String!, $preco: Float!) {createExpense(categoria: $categoria, descricao: $descricao, preco: $preco) {categoria descricao preco}}",
+                "variables": {
+                    "categoria": "Transporte",
+                    "descricao": "Uber",
+                    "preco": 49.99
+                }
+}

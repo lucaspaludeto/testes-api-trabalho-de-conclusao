@@ -1,12 +1,13 @@
 const request = require('supertest');
 const { expect } = require('chai');
+require('dotenv').config();
 
 
 describe('Expense Controller', () => {
     describe('POST /expenses', () => {
 
         beforeEach(async () => {
-            const respostaLogin = await request('http://localhost:3000')
+            const respostaLogin = await request(process.env.BASE_URL_REST)
                 .post('/login')
                 .send({
                     nome: 'lucas',
@@ -17,7 +18,7 @@ describe('Expense Controller', () => {
         });
 
         it('POST /expenses deve retornar 201 quando os dados são válidos', async () => {
-            const resposta = await request('http://localhost:3000')
+            const resposta = await request(process.env.BASE_URL_REST)
                 .post('/expenses')
                 .set('Authorization', `Bearer ${token}`)
                 .send({
@@ -33,7 +34,7 @@ describe('Expense Controller', () => {
         
         
         it('POST /expenses deve retornar 400 quando categoria não é informada', async () => {
-            const resposta = await request('http://localhost:3000')
+            const resposta = await request(process.env.BASE_URL_REST)
                 .post('/expenses')
                 .set('Authorization', `Bearer ${token}`)
                 .send({
@@ -46,7 +47,7 @@ describe('Expense Controller', () => {
         });
 
         it('POST /expenses deve retornar 400 quando descricao não é informado', async () => {
-            const resposta = await request('http://localhost:3000')
+            const resposta = await request(process.env.BASE_URL_REST)
                 .post('/expenses')
                 .set('Authorization', `Bearer ${token}`)
                 .send({
@@ -59,7 +60,7 @@ describe('Expense Controller', () => {
         });
 
         it('POST /expenses deve retornar 400 quando preco não é informado', async () => {
-            const resposta = await request('http://localhost:3000')
+            const resposta = await request(process.env.BASE_URL_REST)
                 .post('/expenses')
                 .set('Authorization', `Bearer ${token}`)
                 .send({
@@ -72,7 +73,7 @@ describe('Expense Controller', () => {
         });
 
         it('POST /expenses deve retornar 400 quando preco é menor ou igual a ZERO', async () => {
-            const resposta = await request('http://localhost:3000')
+            const resposta = await request(process.env.BASE_URL_REST)
                 .post('/expenses')
                 .set('Authorization', `Bearer ${token}`)
                 .send({
@@ -86,7 +87,7 @@ describe('Expense Controller', () => {
         });
 
         it('POST /expenses deve retornar 401 quando o token não é informado', async () => {
-            const resposta = await request('http://localhost:3000')
+            const resposta = await request(process.env.BASE_URL_REST)
                 .post('/expenses')
                 .send({
                     categoria: "Alimentação",
@@ -99,7 +100,7 @@ describe('Expense Controller', () => {
         });
 
         it('POST /expenses deve retornar 403 quando o token é inválido', async () => {
-            const resposta = await request('http://localhost:3000')
+            const resposta = await request(process.env.BASE_URL_REST)
                 .post('/expenses')
                 .set('Authorization', 'Bearer tokenInválido')
                 .send({
@@ -115,7 +116,7 @@ describe('Expense Controller', () => {
 
     describe('GET /expenses', () => {
         beforeEach(async () => {
-            const respostaLogin = await request('http://localhost:3000')
+            const respostaLogin = await request(process.env.BASE_URL_REST)
                 .post('/login')
                 .send({
                     nome: 'lucas',
@@ -126,7 +127,7 @@ describe('Expense Controller', () => {
         });
 
          it('GET /expenses deve retornar 200 e uma lista de despesas', async () => {
-            const resposta = await request('http://localhost:3000')
+            const resposta = await request(process.env.BASE_URL_REST)
                 .get('/expenses')
                 .set('Authorization', `Bearer ${token}`);
 
@@ -137,7 +138,7 @@ describe('Expense Controller', () => {
         });
 
         it('GET /expenses deve retornar 401 quando o token não é informado', async () => {
-            const resposta = await request('http://localhost:3000')
+            const resposta = await request(process.env.BASE_URL_REST)
                 .get('/expenses');
 
             expect(resposta.status).to.equal(401);
@@ -145,7 +146,7 @@ describe('Expense Controller', () => {
         });
 
         it('GET /expenses deve retornar 403 quando o token é inválido', async () => {
-            const resposta = await request('http://localhost:3000')
+            const resposta = await request(process.env.BASE_URL_REST)
                 .get('/expenses')
                 .set('Authorization', 'Bearer tokenInvalido')
 
