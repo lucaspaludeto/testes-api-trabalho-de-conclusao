@@ -32,7 +32,7 @@ describe('Expense Controller', () => {
         });
         
         
-        it(' POST /expenses deve retornar 400 quando categoria não é informada', async () => {
+        it('POST /expenses deve retornar 400 quando categoria não é informada', async () => {
             const resposta = await request('http://localhost:3000')
                 .post('/expenses')
                 .set('Authorization', `Bearer ${token}`)
