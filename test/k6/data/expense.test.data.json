@@ -1,0 +1,17 @@
+[
+    {
+        "categoria": "Alimentação",
+        "descricao": "Pizza",
+        "preco": 105.34
+    },
+     {
+        "categoria": "Residência",
+        "descricao": "Conta de Luz",
+        "preco": 191.99
+    },
+     {
+        "categoria": "Transporte",
+        "descricao": "Uber",
+        "preco": 49.23
+    }
+]
